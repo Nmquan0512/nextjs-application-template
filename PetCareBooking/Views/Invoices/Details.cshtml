@@ -1,0 +1,38 @@
+@model PetCareBooking.Models.Invoice
+
+@{
+    ViewData["Title"] = "Invoice Details";
+}
+
+<h1>Invoice Details</h1>
+
+<div>
+    <h4>Invoice</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Customer</dt>
+        <dd class="col-sm-10">@Model.Appointment.Customer.Name</dd>
+
+        <dt class="col-sm-2">Product</dt>
+        <dd class="col-sm-10">@Model.Appointment.Product.Name</dd>
+
+        <dt class="col-sm-2">Invoice Date</dt>
+        <dd class="col-sm-10">@Model.InvoiceDate.ToString("d")</dd>
+
+        <dt class="col-sm-2">Total Amount</dt>
+        <dd class="col-sm-10">@Model.TotalAmount.ToString("C")</dd>
+
+        <dt class="col-sm-2">Voucher Code</dt>
+        <dd class="col-sm-10">@Model.VoucherCode</dd>
+
+        <dt class="col-sm-2">Discount Amount</dt>
+        <dd class="col-sm-10">@Model.DiscountAmount.ToString("C")</dd>
+
+        <dt class="col-sm-2">Final Amount</dt>
+        <dd class="col-sm-10">@Model.FinalAmount.ToString("C")</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
