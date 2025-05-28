@@ -1,0 +1,51 @@
+@model IEnumerable<PetCareBooking.Models.Invoice>
+
+@{
+    ViewData["Title"] = "Invoices";
+}
+
+<h1>Invoices</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<form method="get" asp-action="Index">
+    <p>
+        Search: <input type="text" name="searchString" value="@Context.Request.Query["searchString"]" />
+        <input type="submit" value="Search" class="btn btn-secondary" />
+    </p>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Invoice Date</th>
+            <th>Total Amount</th>
+            <th>Voucher Code</th>
+            <th>Discount Amount</th>
+            <th>Final Amount</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.Appointment.Customer.Name</td>
+            <td>@item.Appointment.Product.Name</td>
+            <td>@item.InvoiceDate.ToString("d")</td>
+            <td>@item.TotalAmount.ToString("C")</td>
+            <td>@item.VoucherCode</td>
+            <td>@item.DiscountAmount.ToString("C")</td>
+            <td>@item.FinalAmount.ToString("C")</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
